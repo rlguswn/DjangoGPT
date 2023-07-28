@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>게시글 목록</h1>
+<!-- Main Content-->
+<div>
+    {{ post.title }}
+    {{ post.content }}
+    {{ post.writer }}
+</div>
+
+<hr>
+
+<div>
+    <form action="{% url 'blog:cm-write' pk=post.id %}" method="post">
+        {% csrf_token %}
+        <label for="comment">코멘트</label>
+        <input type="text" id="comment" name="comment" required>
+
+        <input type="submit" value="댓글 쓰기">
+    </form>
+</div>
+
+<hr>
+
+{% endblock %}
