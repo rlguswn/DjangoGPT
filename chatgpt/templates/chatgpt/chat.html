@@ -8,10 +8,5 @@
             <p><strong>Bot:</strong> {{ conversation.response }}</p>
         {% endfor %}
     </div>
-    <form method="post">
-        {% csrf_token %}
-        <label for="prompt">You:</label>
-        <input type="text" id="prompt" name="prompt">
-        <input type="submit" value="Send">
-    </form>
+
 {% endblock %}

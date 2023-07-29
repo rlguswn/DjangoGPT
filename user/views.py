@@ -20,10 +20,11 @@ class UserRegister(APIView):
 
 class UserLogin(APIView):
     def get(self, request):
-        return render(request, 'user/user_login.html')
+        return Response({'message': 'You are already logged in!'}, status=status.HTTP_403_FORBIDDEN)
+
     def post(self, request):
         if request.user.is_authenticated:
-            return redirect('blog:list')
+            return Response({'message': 'You are already logged in!'}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = LoginSerializer(request, request.POST)
         if serializer.is_valid():
