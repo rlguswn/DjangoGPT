@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.views import View
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from dotenv import load_dotenv
 import openai
 import os
+from chatgpt.models import Conversation
+from chatgpt.serializers import ConversationSerializer
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -39,3 +44,10 @@ class ChatView(View):
             request.session['conversations'] = session_conversations
 
         return self.get(request, *args, **kwargs)
+
+
+class ChatList(APIView):
+    def get(self, request):
+        conversations = Conversation.get.all(user=request.user)
+        serializer = ConversationSerializer(conversations)
+        return Response(serializer.data, status=status.HTTP_200_OK)
