@@ -5,4 +5,4 @@ from .models import Conversation
 class ConversationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
-        fields = '__all__'
+        fields = ['user', 'prompt', 'response', 'usage', 'created']

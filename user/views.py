@@ -34,7 +34,8 @@ class UserLogin(APIView):
             user = authenticate(request, email=email, password=password)
             if user:
                 login(request, user)
-                return Response({'message': 'User logged in successfully'}, status=status.HTTP_200_OK)
+                # return Response({'message': 'User logged in successfully'}, status=
+                return redirect('chatgpt:chat')
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 

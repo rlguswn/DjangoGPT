@@ -1,9 +1,9 @@
 from django.urls import path
 from django.conf import settings
-from .views import ChatView
+from . import views
 
 app_name = 'chatgpt'
 
 urlpatterns = [
-    path('', ChatView.as_view(), name='chat'),
+    path('', views.ChatAPI.as_view(), name='chat'),
 ]
