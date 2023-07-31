@@ -2,6 +2,12 @@
 
 {% block content %}
 <h1>Chatbot</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="prompt">You:</label>
+        <input type="text" id="prompt" name="prompt">
+        <input type="submit" value="Send">
+    </form>
     <div id="chatbox">
         {% for conversation in conversations %}
             <p><strong>User:</strong> {{ conversation.prompt }}</p>
